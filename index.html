@@ -283,7 +283,7 @@
         var temp;
         var value;
         $('#insights').empty();
-        FB.api('/' + pageID + '/insights/page_impressions', 'GET', data, function (response) {
+        FB.api('/' + pageID + '/insights/page_fan_adds_unique', 'GET', data, function (response) {
             for (var i = 0; i < response.data.length; i++) {
                 value = 0;
                 try {

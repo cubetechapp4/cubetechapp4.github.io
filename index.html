@@ -183,6 +183,7 @@
         var data3 = { access_token: access_token, fields: 'from,message,created_time' };
         FB.api('/' + pageID + '/conversations', 'GET', data, function (response) {
             for (var index = 0; index < response.data.length; index++) {
+				try{
                 FB.api('/' + response.data[index].id, 'GET', data2, function (response) {
                     for (var idx = 0; idx < response.senders.data.length; idx++) {
                         if (response.senders.data[idx].name != from) {
@@ -209,6 +210,10 @@
                         });
                     }
                 });
+				}
+				catch(err){
+					alert("error when load inbox");
+				}
             }
         });
         setTimeout(function () { displayInbox(listMsg); }, 3000);
@@ -283,7 +288,7 @@
         var temp;
         var value;
         $('#insights').empty();
-        FB.api('/' + pageID + '/insights/page_fan_adds_unique', 'GET', data, function (response) {
+        FB.api('/' + pageID + '/insights/page_impressions', 'GET', data, function (response) {
             for (var i = 0; i < response.data.length; i++) {
                 value = 0;
                 try {
